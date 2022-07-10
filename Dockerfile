@@ -8,6 +8,7 @@ COPY ./dist /usr/share/nginx/html
 COPY ./nginx/default.conf.template /etc/nginx/templates/default.conf.template
 
 COPY ./startup.sh /usr/bin/startup.sh
+RUN chmod +x /usr/bin/webapp_startup.sh
 
 CMD ["startup.sh"]
 
