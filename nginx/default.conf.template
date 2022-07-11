@@ -12,7 +12,7 @@ server {
 
   location = /message {
     add_header Content-Type application/json;
-    return 200 "${MESSAGE}";
+    return 200 "\"${MESSAGE}\"";
   }
 
   #error_page  404              /404.html;
