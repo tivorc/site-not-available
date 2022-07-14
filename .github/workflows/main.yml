@@ -38,7 +38,7 @@ jobs:
         with:
           push: true
           context: ./
-          tags: monago.azurecr.io/${{ secrets.AzureAppService_ContainerUsername }}/nginx:${{ steps.package-version.outputs.current-version }}
+          tags: monago.azurecr.io/${{ secrets.AzureAppService_ContainerUsername }}/monago-container-maintenance:${{ steps.package-version.outputs.current-version }}
           file: ./Dockerfile
 
   deploy:
@@ -53,7 +53,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: "monago-nginx"
-          slot-name: "production"
+          app-name: "monago-container"
+          slot-name: "maintenance"
           publish-profile: ${{ secrets.AzureAppService_PublishProfile }}
-          images: "monago.azurecr.io/${{ secrets.AzureAppService_ContainerUsername }}/nginx:${{ needs.build.outputs.packageversion }}"
+          images: "monago.azurecr.io/${{ secrets.AzureAppService_ContainerUsername }}/monago-container-maintenance:${{ needs.build.outputs.packageversion }}"
